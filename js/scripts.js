@@ -27,15 +27,15 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
     function _toggleMenuIcon() {
-        const menuToggleBars = document.body.querySelector('.menu-toggle > .fa-bars');
-        const menuToggleTimes = document.body.querySelector('.menu-toggle > .fa-xmark');
+        const menuToggleBars = document.body.querySelector('.menu-toggle > .icon-menu');
+        const menuToggleTimes = document.body.querySelector('.menu-toggle > .icon-arrow-right');
         if (menuToggleBars) {
-            menuToggleBars.classList.remove('fa-bars');
-            menuToggleBars.classList.add('fa-xmark');
+            menuToggleBars.classList.remove('icon-menu');
+            menuToggleBars.classList.add('icon-arrow-right');
         }
         if (menuToggleTimes) {
-            menuToggleTimes.classList.remove('fa-xmark');
-            menuToggleTimes.classList.add('fa-bars');
+            menuToggleTimes.classList.remove('icon-arrow-right');
+            menuToggleTimes.classList.add('icon-menu');
         }
     }
 
@@ -399,9 +399,20 @@ class ConsoleSignature {
 };
 
 const texts = [
-    "Global Achievement Gap",
-    "Creative Thought",
-    "Design Thinking Workshop",
+  "Competetive Advantage",
+  "Expertise",
+  "Excellence",
+  "Achievement",
+  "Innovation",
+  "Logic",
+  "Technological Advancement",
+  "Reasoning",
+  "Workshop",
+  "Analysis",
+  "Collaboration",
+  "Rationale",
+  "Specialization",
+  "Quality Standard",
 ];
 
 const morphTime = 1;
