@@ -15,6 +15,16 @@ window.addEventListener('DOMContentLoaded', event => {
         _toggleMenuIcon();
         menuToggle.classList.toggle('active');
     })
+    // Closes on Click of Menu as well
+    const menuItemToggle = document.body.querySelector('.sidebar-nav');
+    menuItemToggle.addEventListener('click', event => {
+      if ('A' == event.target.tagName){
+        sidebarWrapper.classList.toggle('active');
+        _toggleMenuIcon();
+        menuToggle.classList.toggle('active');
+      }
+    })
+    
 
     // Closes responsive menu when a scroll trigger link is clicked
     var scrollTriggerList = [].slice.call(document.querySelectorAll('#sidebar-wrapper .js-scroll-trigger'));
