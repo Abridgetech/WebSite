@@ -13053,9 +13053,6 @@ footer.footer .social-link:hover {
   left: 1px;
 }
 #main {
-  width: calc(100% - 350px);
-  display: inline-block;
-  margin-left: 350px;
   min-width: 350px;
 }
 
