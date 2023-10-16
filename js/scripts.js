@@ -5,153 +5,155 @@
 */
 window.addEventListener('DOMContentLoaded', event => {
 
-    const sidebarWrapper = document.getElementById('sidebar-wrapper');
-    let scrollToTopVisible = false;
-    // Closes the sidebar menu
-    const menuToggle = document.body.querySelector('.menu-toggle');
+  const sidebarWrapper = document.getElementById('sidebar-wrapper');
+  let scrollToTopVisible = false;
+  // Closes the sidebar menu
+  const menuToggle = document.body.querySelector('.menu-toggle');
+  if (menuToggle) {
     menuToggle.addEventListener('click', event => {
-        event.preventDefault();
-        sidebarWrapper.classList.toggle('active');
-        _toggleMenuIcon();
-        menuToggle.classList.toggle('active');
+      event.preventDefault();
+      sidebarWrapper.classList.toggle('active');
+      _toggleMenuIcon();
+      menuToggle.classList.toggle('active');
     })
+
     // Closes on Click of Menu as well
     const menuItemToggle = document.body.querySelector('.sidebar-nav');
     menuItemToggle.addEventListener('click', event => {
-      if ('A' == event.target.tagName){
+      if ('A' == event.target.tagName) {
         sidebarWrapper.classList.toggle('active');
         _toggleMenuIcon();
         menuToggle.classList.toggle('active');
       }
     })
-    
+  }
 
-    // Closes responsive menu when a scroll trigger link is clicked
-    var scrollTriggerList = [].slice.call(document.querySelectorAll('#sidebar-wrapper .js-scroll-trigger'));
-    scrollTriggerList.map(scrollTrigger => {
-        scrollTrigger.addEventListener('click', () => {
-            sidebarWrapper.classList.remove('active');
-            menuToggle.classList.remove('active');
-            _toggleMenuIcon();
-        })
-    });
-
-    function _toggleMenuIcon() {
-        const menuToggleBars = document.body.querySelector('.menu-toggle > .icon-menu');
-        const menuToggleTimes = document.body.querySelector('.menu-toggle > .icon-arrow-right');
-        if (menuToggleBars) {
-            menuToggleBars.classList.remove('icon-menu');
-            menuToggleBars.classList.add('icon-arrow-right');
-        }
-        if (menuToggleTimes) {
-            menuToggleTimes.classList.remove('icon-arrow-right');
-            menuToggleTimes.classList.add('icon-menu');
-        }
-    }
-
-    // Scroll to top button appear
-    document.addEventListener('scroll', () => {
-        const scrollToTop = document.body.querySelector('.scroll-to-top');
-        if (document.documentElement.scrollTop > 100) {
-            if (!scrollToTopVisible) {
-                fadeIn(scrollToTop);
-                scrollToTopVisible = true;
-            }
-        } else {
-            if (scrollToTopVisible) {
-                fadeOut(scrollToTop);
-                scrollToTopVisible = false;
-            }
-        }
+  // Closes responsive menu when a scroll trigger link is clicked
+  var scrollTriggerList = [].slice.call(document.querySelectorAll('#sidebar-wrapper .js-scroll-trigger'));
+  scrollTriggerList.map(scrollTrigger => {
+    scrollTrigger.addEventListener('click', () => {
+      sidebarWrapper.classList.remove('active');
+      menuToggle.classList.remove('active');
+      _toggleMenuIcon();
     })
+  });
+
+  function _toggleMenuIcon() {
+    const menuToggleBars = document.body.querySelector('.menu-toggle > .icon-menu');
+    const menuToggleTimes = document.body.querySelector('.menu-toggle > .icon-arrow-right');
+    if (menuToggleBars) {
+      menuToggleBars.classList.remove('icon-menu');
+      menuToggleBars.classList.add('icon-arrow-right');
+    }
+    if (menuToggleTimes) {
+      menuToggleTimes.classList.remove('icon-arrow-right');
+      menuToggleTimes.classList.add('icon-menu');
+    }
+  }
+
+  // Scroll to top button appear
+  document.addEventListener('scroll', () => {
+    const scrollToTop = document.body.querySelector('.scroll-to-top');
+    if (document.documentElement.scrollTop > 100) {
+      if (!scrollToTopVisible) {
+        fadeIn(scrollToTop);
+        scrollToTopVisible = true;
+      }
+    } else {
+      if (scrollToTopVisible) {
+        fadeOut(scrollToTop);
+        scrollToTopVisible = false;
+      }
+    }
+  })
 })
 
 function fadeOut(el) {
-    el.style.opacity = 1;
-    (function fade() {
-        if ((el.style.opacity -= .1) < 0) {
-            el.style.display = "none";
-        } else {
-            requestAnimationFrame(fade);
-        }
-    })();
+  el.style.opacity = 1;
+  (function fade() {
+    if ((el.style.opacity -= .1) < 0) {
+      el.style.display = "none";
+    } else {
+      requestAnimationFrame(fade);
+    }
+  })();
 };
 
 function fadeIn(el, display) {
-    el.style.opacity = 0;
-    el.style.display = display || "block";
-    (function fade() {
-        var val = parseFloat(el.style.opacity);
-        if (!((val += .1) > 1)) {
-            el.style.opacity = val;
-            requestAnimationFrame(fade);
-        }
-    })();
+  el.style.opacity = 0;
+  el.style.display = display || "block";
+  (function fade() {
+    var val = parseFloat(el.style.opacity);
+    if (!((val += .1) > 1)) {
+      el.style.opacity = val;
+      requestAnimationFrame(fade);
+    }
+  })();
 };
 
 class ConsoleSignature {
-    constructor() {
-      this.message = `created by yoichi kobayashi`;
-      this.url = `http://www.tplh.net`;
-      this.show();
-    }
-    show() {
-      if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
-        const args = [
-          `\n%c ${this.message} %c%c ${this.url} \n\n`,
-          'color: #fff; background: #222; padding:3px 0;',
-          'padding:3px 1px;',
-          'color: #fff; background: #47c; padding:3px 0;',
-        ];
-        console.log.apply(console, args);
-      } else if (window.console) {
-        console.log(`${this.message} ${this.url}`);
-      }
+  constructor() {
+    this.message = `created by yoichi kobayashi`;
+    this.url = `http://www.tplh.net`;
+    this.show();
+  }
+  show() {
+    if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+      const args = [
+        `\n%c ${this.message} %c%c ${this.url} \n\n`,
+        'color: #fff; background: #222; padding:3px 0;',
+        'padding:3px 1px;',
+        'color: #fff; background: #47c; padding:3px 0;',
+      ];
+      console.log.apply(console, args);
+    } else if (window.console) {
+      console.log(`${this.message} ${this.url}`);
     }
   }
-  
-  const debounce = (callback, duration) => {
-    var timer;
-    return function(event) {
-      clearTimeout(timer);
-      timer = setTimeout(function(){
-        callback(event);
-      }, duration);
-    };
+}
+
+const debounce = (callback, duration) => {
+  var timer;
+  return function (event) {
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      callback(event);
+    }, duration);
   };
-  
-  const SIZE = 70;
-  
-  class Butterfly {
-    constructor(i, texture) {
-      this.uniforms = {
-        index: {
-          type: 'f',
-          value: i
-        },
-        time: {
-          type: 'f',
-          value: 0
-        },
-        size: {
-          type: 'f',
-          value: SIZE
-        },
-        texture: {
-          type: 't',
-          value: texture
-        },
-      }
-      this.physicsRenderer = null;
-      this.obj = this.createObj();
+};
+
+const SIZE = 70;
+
+class Butterfly {
+  constructor(i, texture) {
+    this.uniforms = {
+      index: {
+        type: 'f',
+        value: i
+      },
+      time: {
+        type: 'f',
+        value: 0
+      },
+      size: {
+        type: 'f',
+        value: SIZE
+      },
+      texture: {
+        type: 't',
+        value: texture
+      },
     }
-    createObj() {
-      const geometry = new THREE.PlaneBufferGeometry(SIZE, SIZE / 2, 24, 12);
-      const mesh = new THREE.Mesh(
-        geometry,
-        new THREE.RawShaderMaterial({
-          uniforms: this.uniforms,
-          vertexShader: `attribute vec3 position;
+    this.physicsRenderer = null;
+    this.obj = this.createObj();
+  }
+  createObj() {
+    const geometry = new THREE.PlaneBufferGeometry(SIZE, SIZE / 2, 24, 12);
+    const mesh = new THREE.Mesh(
+      geometry,
+      new THREE.RawShaderMaterial({
+        uniforms: this.uniforms,
+        vertexShader: `attribute vec3 position;
   attribute vec2 uv;
   
   uniform mat4 modelViewMatrix;
@@ -180,7 +182,7 @@ class ConsoleSignature {
     gl_Position = projectionMatrix * mvPosition;
   }
   `,
-          fragmentShader: `precision highp float;
+        fragmentShader: `precision highp float;
   
   uniform float index;
   uniform float time;
@@ -308,104 +310,104 @@ class ConsoleSignature {
   
     gl_FragColor = vec4(rgb, 1.0) * texColor;
   }`,
-          depthWrite: false,
-          side: THREE.DoubleSide,
-          transparent: true
-        })
-      );
-      mesh.rotation.set(-45 * Math.PI / 180, 0, 0);
-      return mesh;
-    }
-    render(renderer, time) {
-      this.uniforms.time.value += time;
-      this.obj.position.z = (this.obj.position.z > -900) ? this.obj.position.z - 4 : 900;
-    }
+        depthWrite: false,
+        side: THREE.DoubleSide,
+        transparent: true
+      })
+    );
+    mesh.rotation.set(-45 * Math.PI / 180, 0, 0);
+    return mesh;
   }
-  
-  const resolution = {
-    x: 0,
-    y: 0
-  };
-  const canvas = document.getElementById('canvas-webgl');
-  const renderer = new THREE.WebGLRenderer({
-    antialias: false,
-    canvas: canvas,
-  });
-  const scene = new THREE.Scene();
-  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 1, 10000);
-  const clock = new THREE.Clock();
-  const loader = new THREE.TextureLoader();
-  
-  const vectorTouchStart = new THREE.Vector2();
-  const vectorTouchMove = new THREE.Vector2();
-  const vectorTouchEnd = new THREE.Vector2();
-  
-  const CAMERA_SIZE_X = 640;
-  const CAMERA_SIZE_Y = 480;
-  
-  const BUTTERFLY_NUM = 7;
-  const butterflies = [];
-  
-  const resizeCamera = () => {
-    const x = Math.min((resolution.x / resolution.y) / (CAMERA_SIZE_X / CAMERA_SIZE_Y), 1.0) * CAMERA_SIZE_X;
-    const y = Math.min((resolution.y / resolution.x) / (CAMERA_SIZE_Y / CAMERA_SIZE_X), 1.0) * CAMERA_SIZE_Y;
-    camera.left   = x * -0.5;
-    camera.right  = x *  0.5;
-    camera.top    = y *  0.5;
-    camera.bottom = y * -0.5;
-    camera.updateProjectionMatrix();
-  };
-  const resizeWindow = () => {
-    resolution.x = window.innerWidth;
-    resolution.y = window.innerHeight;
-    canvas.width = resolution.x;
-    canvas.height = resolution.y;
-    resizeCamera();
-    renderer.setSize(resolution.x, resolution.y);
+  render(renderer, time) {
+    this.uniforms.time.value += time;
+    this.obj.position.z = (this.obj.position.z > -900) ? this.obj.position.z - 4 : 900;
   }
-  const render = () => {
-    const time = clock.getDelta();
-    for (var i = 0; i < butterflies.length; i++) {
-      butterflies[i].render(renderer, time);
-    }
-    renderer.render(scene, camera);
-  }
-  const renderLoop = () => {
-    render();
-    requestAnimationFrame(renderLoop);
-  }
-  const on = () => {
-    window.addEventListener('resize', debounce(resizeWindow), 1000);
-  }
-  
-  const init = () => {
-    resizeWindow();
-    on();
-  
-    renderer.setClearColor(0xeeeeee, 1.0);
-    camera.position.set(250, 500, 1000);
-    camera.lookAt(new THREE.Vector3());
-  
-    loader.crossOrigin = 'anonymous';  
-    loader.load('/assets/img/tex.png', (texture) => {
-      texture.magFilter = THREE.NearestFilter;
-      texture.minFilter = THREE.NearestFilter;
-  
-      for (var i = 0; i < BUTTERFLY_NUM; i++) {
-        butterflies[i] = new Butterfly(i, texture);
-        butterflies[i].obj.position.set(((i + 1) % 3 - 1) * i * 50, 0, 1800 / BUTTERFLY_NUM * i);
-        scene.add(butterflies[i].obj);
-      }
-      renderLoop();
-    });
-  }
-  init();
-  
-  new ConsoleSignature();
+}
 
-  const elts = {
-    text1: document.getElementById("text1"),
-    text2: document.getElementById("text2")
+const resolution = {
+  x: 0,
+  y: 0
+};
+const canvas = document.getElementById('canvas-webgl');
+const renderer = new THREE.WebGLRenderer({
+  antialias: false,
+  canvas: canvas,
+});
+const scene = new THREE.Scene();
+const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 1, 10000);
+const clock = new THREE.Clock();
+const loader = new THREE.TextureLoader();
+
+const vectorTouchStart = new THREE.Vector2();
+const vectorTouchMove = new THREE.Vector2();
+const vectorTouchEnd = new THREE.Vector2();
+
+const CAMERA_SIZE_X = 640;
+const CAMERA_SIZE_Y = 480;
+
+const BUTTERFLY_NUM = 7;
+const butterflies = [];
+
+const resizeCamera = () => {
+  const x = Math.min((resolution.x / resolution.y) / (CAMERA_SIZE_X / CAMERA_SIZE_Y), 1.0) * CAMERA_SIZE_X;
+  const y = Math.min((resolution.y / resolution.x) / (CAMERA_SIZE_Y / CAMERA_SIZE_X), 1.0) * CAMERA_SIZE_Y;
+  camera.left = x * -0.5;
+  camera.right = x * 0.5;
+  camera.top = y * 0.5;
+  camera.bottom = y * -0.5;
+  camera.updateProjectionMatrix();
+};
+const resizeWindow = () => {
+  resolution.x = window.innerWidth;
+  resolution.y = window.innerHeight;
+  canvas.width = resolution.x;
+  canvas.height = resolution.y;
+  resizeCamera();
+  renderer.setSize(resolution.x, resolution.y);
+}
+const render = () => {
+  const time = clock.getDelta();
+  for (var i = 0; i < butterflies.length; i++) {
+    butterflies[i].render(renderer, time);
+  }
+  renderer.render(scene, camera);
+}
+const renderLoop = () => {
+  render();
+  requestAnimationFrame(renderLoop);
+}
+const on = () => {
+  window.addEventListener('resize', debounce(resizeWindow), 1000);
+}
+
+const init = () => {
+  resizeWindow();
+  on();
+
+  renderer.setClearColor(0xeeeeee, 1.0);
+  camera.position.set(250, 500, 1000);
+  camera.lookAt(new THREE.Vector3());
+
+  loader.crossOrigin = 'anonymous';
+  loader.load('/assets/img/tex.png', (texture) => {
+    texture.magFilter = THREE.NearestFilter;
+    texture.minFilter = THREE.NearestFilter;
+
+    for (var i = 0; i < BUTTERFLY_NUM; i++) {
+      butterflies[i] = new Butterfly(i, texture);
+      butterflies[i].obj.position.set(((i + 1) % 3 - 1) * i * 50, 0, 1800 / BUTTERFLY_NUM * i);
+      scene.add(butterflies[i].obj);
+    }
+    renderLoop();
+  });
+}
+init();
+
+new ConsoleSignature();
+
+const elts = {
+  text1: document.getElementById("text1"),
+  text2: document.getElementById("text2")
 };
 
 const texts = [
@@ -433,64 +435,67 @@ let time = new Date();
 let morph = 0;
 let cooldown = cooldownTime;
 
-elts.text1.textContent = texts[textIndex % texts.length];
-elts.text2.textContent = texts[(textIndex + 1) % texts.length];
-
+if ( elts.text1) {
+  elts.text1.textContent = texts[textIndex % texts.length];
+  elts.text2.textContent = texts[(textIndex + 1) % texts.length];
+}
 function doMorph() {
-    morph -= cooldown;
-    cooldown = 0;
+  morph -= cooldown;
+  cooldown = 0;
 
-    let fraction = morph / morphTime;
+  let fraction = morph / morphTime;
 
-    if (fraction > 1) {
-        cooldown = cooldownTime;
-        fraction = 1;
-    }
+  if (fraction > 1) {
+    cooldown = cooldownTime;
+    fraction = 1;
+  }
 
-    setMorph(fraction);
+  setMorph(fraction);
 }
 
 function setMorph(fraction) {
-    elts.text2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
-    elts.text2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+  elts.text2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+  elts.text2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
 
-    fraction = 1 - fraction;
-    elts.text1.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
-    elts.text1.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+  fraction = 1 - fraction;
+  elts.text1.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+  elts.text1.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
 
-    elts.text1.textContent = texts[textIndex % texts.length];
-    elts.text2.textContent = texts[(textIndex + 1) % texts.length];
+  elts.text1.textContent = texts[textIndex % texts.length];
+  elts.text2.textContent = texts[(textIndex + 1) % texts.length];
 }
 
 function doCooldown() {
-    morph = 0;
+  morph = 0;
 
-    elts.text2.style.filter = "";
-    elts.text2.style.opacity = "100%";
+  elts.text2.style.filter = "";
+  elts.text2.style.opacity = "100%";
 
-    elts.text1.style.filter = "";
-    elts.text1.style.opacity = "0%";
+  elts.text1.style.filter = "";
+  elts.text1.style.opacity = "0%";
 }
 
 function animate() {
-    requestAnimationFrame(animate);
+  requestAnimationFrame(animate);
 
-    let newTime = new Date();
-    let shouldIncrementIndex = cooldown > 0;
-    let dt = (newTime - time) / 1000;
-    time = newTime;
+  let newTime = new Date();
+  let shouldIncrementIndex = cooldown > 0;
+  let dt = (newTime - time) / 1000;
+  time = newTime;
 
-    cooldown -= dt;
+  cooldown -= dt;
 
-    if (cooldown <= 0) {
-        if (shouldIncrementIndex) {
-            textIndex++;
-        }
-
-        doMorph();
-    } else {
-        doCooldown();
+  if (cooldown <= 0) {
+    if (shouldIncrementIndex) {
+      textIndex++;
     }
+
+    doMorph();
+  } else {
+    doCooldown();
+  }
 }
 
-animate();
+if ( elts.text1) {
+  animate();
+}
