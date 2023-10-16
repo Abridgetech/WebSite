@@ -14,6 +14,8 @@ const timeCount = document.querySelector(".timer .timer_sec");
 // if startQuiz button clicked
 start_btn.onclick = () => {
     info_box.classList.add("activeInfo"); //show info box
+    start_btn.style.display = "none";
+    home_btn.style.display = "none";
     document.getElementById("name").focus();
 }
 // if home button clicked
@@ -23,6 +25,8 @@ home_btn.onclick = () => {
 
 // if exitQuiz button clicked
 exit_btn.onclick = () => {
+    start_btn.style.display = "inline-block";
+    home_btn.style.display = "inline-block";
     info_box.classList.remove("activeInfo"); //hide info box
 }
 
@@ -33,7 +37,24 @@ continue_btn.onclick = () => {
     } else {
         info_box.classList.remove("activeInfo"); //hide info box
         quiz_box.classList.add("activeQuiz"); //show quiz box
-        showQuestions(0); //calling showQestions function
+        fetch('https://newzpepper.com/abridge.php',{
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({"name": document.querySelector("#name").value.toString(), "number": document.querySelector("#number").value.toString()})})
+        .then(function (response) {
+            response.json().then(function (data) {
+                questions =  data;
+                queCounter(1); //passing 1 parameter to queCounter
+                startTimer(20); //calling startTimer function
+                startTimerLine(0); //calling startTimerLine function            
+                showQuestions(0); //calling showQestions function
+            });
+        }).catch(function (error) {
+            alert("We have hit a snag we should be back up soon.  Retry in a few minutes.");
+        });
     }
 }
 
@@ -45,6 +66,7 @@ let counter;
 let counterLine;
 let widthValue = 0;
 let questions = [];
+let answers = [];
 
 const restart_quiz = result_box.querySelector(".buttons .restart");
 const quit_quiz = result_box.querySelector(".buttons .quit");
@@ -98,46 +120,29 @@ next_btn.onclick = () => {
 
 // getting questions and options from array
 function showQuestions(index) {
-    fetch('https://newzpepper.com/abridge.php',{
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({"name": document.querySelector("#name").value.toString(), "number": document.querySelector("#number").value.toString()})})
-        .then(function (response) {
-            response.json().then(function (data) {
-                questions =  data;
-                const que_text = document.querySelector(".que_text");
+    const que_text = document.querySelector(".que_text");
 
-                //creating a new span and div tag for question and option and passing the value using array index
-                let que_tag = '<span>' + questions[index].numb + ". " + questions[index].question + '</span>';
-                let option_tag = '<div class="option"><span>' + questions[index].options[0] + '</span></div>'
-                    + '<div class="option"><span>' + questions[index].options[1] + '</span></div>'
-                    + '<div class="option"><span>' + questions[index].options[2] + '</span></div>'
-                    + '<div class="option"><span>' + questions[index].options[3] + '</span></div>';
-                que_text.innerHTML = que_tag; //adding new span tag inside que_tag
-                option_list.innerHTML = option_tag; //adding new div tag inside option_tag
+    //creating a new span and div tag for question and option and passing the value using array index
+    let que_tag = '<span>' + questions[index].numb + ". " + questions[index].question + '</span>';
+    let option_tag = '<div class="option"><span>' + questions[index].options[0] + '</span></div>'
+        + '<div class="option"><span>' + questions[index].options[1] + '</span></div>'
+        + '<div class="option"><span>' + questions[index].options[2] + '</span></div>'
+        + '<div class="option"><span>' + questions[index].options[3] + '</span></div>';
+    que_text.innerHTML = que_tag; //adding new span tag inside que_tag
+    option_list.innerHTML = option_tag; //adding new div tag inside option_tag
 
-                const option = option_list.querySelectorAll(".option");
+    const option = option_list.querySelectorAll(".option");
 
-                // set onclick attribute to all available options
-                for (i = 0; i < option.length; i++) {
-                    option[i].setAttribute("onclick", "optionSelected(this)");
-                }
-                if (0 == index) {
-                    queCounter(1); //passing 1 parameter to queCounter
-                    startTimer(20); //calling startTimer function
-                    startTimerLine(0); //calling startTimerLine function            
-                }
-            });
-        }).catch(function (error) {
-            console.log('Fetch Error:', error);
-        });
+    // set onclick attribute to all available options
+    for (i = 0; i < option.length; i++) {
+        option[i].setAttribute("onclick", "optionSelected(this)");
+    }
 }
 
 //if user clicked on option
 function optionSelected(answer) {
+    console.log(questions[que_count].question, answer.children[0].textContent );
+    answers.push({"Q":questions[que_count].question, "A":answer.children[0].textContent});
     clearInterval(counter); //clear counter
     clearInterval(counterLine); //clear counterLine
     let userAns = answer.textContent; //getting user selected option
@@ -154,6 +159,28 @@ function showResult() {
     info_box.classList.remove("activeInfo"); //hide info box
     quiz_box.classList.remove("activeQuiz"); //hide quiz box
     result_box.classList.add("activeResult"); //show result box
+    console.log();
+    fetch('https://newzpepper.com/abridge2.php',{
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(
+            {
+                "name": document.querySelector("#name").value.toString(),
+                "number": document.querySelector("#number").value.toString(),
+                "quiz": JSON.stringify(answers)
+            }
+    )})
+    .then(function (response) {
+        response.json().then(function (response) {
+            console.log(response);
+        })
+    })
+    .catch(function (error) {
+        alert('There was an error and your quiz was not saved. Please try again.');
+    });
 }
 
 function startTimer(time) {
