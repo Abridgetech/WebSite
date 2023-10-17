@@ -116,6 +116,9 @@ html {
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
+    max-height: 96vh;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .quiz_box header{

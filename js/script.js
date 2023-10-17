@@ -43,7 +43,9 @@ exit_btn.onclick = () => {
 // if continueQuiz button clicked
 continue_btn.onclick = () => {
     if ("" == document.querySelector("#name").value.toString() || "" == document.querySelector("#number").value.toString()) {
-        alert("Please fill in your name and phone number");
+        alert("Please fill in your name and 10 digit phone number");
+    } else if (document.querySelector("#number").value.toString().length != 10  || isNaN(document.querySelector("#number").value.toString())) {
+        alert("Please fill in your 10 digit phone number");
     } else {
         info_box.classList.remove("activeInfo"); //hide info box
         quiz_box.classList.add("activeQuiz"); //show quiz box
