@@ -37,25 +37,29 @@ continue_btn.onclick = () => {
     } else {
         info_box.classList.remove("activeInfo"); //hide info box
         quiz_box.classList.add("activeQuiz"); //show quiz box
-        //fetch('http://127.0.0.1:3000/js/questions.js',{
-        fetch('https://newzpepper.com/abridge.php',{
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({"name": document.querySelector("#name").value.toString(), "number": document.querySelector("#number").value.toString()})})
-        .then(function (response) {
-            response.json().then(function (data) {
-                questions =  data;
-                queCounter(1); //passing 1 parameter to queCounter
-                startTimer(30); //calling startTimer function
-                startTimerLine(0); //calling startTimerLine function            
-                showQuestions(0); //calling showQestions function
+        var count = 0;
+        do {
+            //fetch('http://127.0.0.1:3000/js/questions.js',{
+            fetch('https://newzpepper.com/abridge.php',{
+                method: 'POST',
+                headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({"name": document.querySelector("#name").value.toString(), "number": document.querySelector("#number").value.toString()})})
+            .then(function (response) {
+                response.json().then(function (data) {
+                    questions =  data;
+                    queCounter(1); //passing 1 parameter to queCounter
+                    startTimer(30); //calling startTimer function
+                    startTimerLine(0); //calling startTimerLine function            
+                    showQuestions(0); //calling showQestions function
+                });
+            }).catch(function (error) {
+                if (count > 0)
+                    alert("We have hit a snag we should be back up soon.  Retry in a few minutes.");
             });
-        }).catch(function (error) {
-            alert("We have hit a snag we should be back up soon.  Retry in a few minutes.");
-        });
+        } while(questions.length == 0 && count++ < 3)
     }
 }
 
@@ -142,7 +146,6 @@ function showQuestions(index) {
 
 //if user clicked on option
 function optionSelected(answer) {
-    console.log(questions[que_count].question, answer.children[0].textContent );
     answers.push({"Q":questions[que_count].question, "A":answer.children[0].textContent});
     clearInterval(counter); //clear counter
     clearInterval(counterLine); //clear counterLine
@@ -160,28 +163,31 @@ function showResult() {
     info_box.classList.remove("activeInfo"); //hide info box
     quiz_box.classList.remove("activeQuiz"); //hide quiz box
     result_box.classList.add("activeResult"); //show result box
-    console.log();
-    fetch('https://newzpepper.com/abridge2.php',{
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(
-            {
-                "name": document.querySelector("#name").value.toString(),
-                "number": document.querySelector("#number").value.toString(),
-                "quiz": JSON.stringify(answers)
-            }
-    )})
-    .then(function (response) {
-        response.json().then(function (response) {
-            console.log(response);
+    var done = 0
+    do{
+        fetch('https://newzpepper.com/abridge2.php',{
+            method: 'POST',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    "name": document.querySelector("#name").value.toString(),
+                    "number": document.querySelector("#number").value.toString(),
+                    "quiz": JSON.stringify(answers)
+                }
+        )})
+        .then(function (response) {
+            response.json().then(function (response) {
+                console.log(response);
+            })
+            done  = 4;
         })
-    })
-    .catch(function (error) {
-        alert('There was an error and your quiz was not saved. Please try again.');
-    });
+        .catch(function (error) {
+            alert('There was an error and your quiz was not saved. Please try again.');
+        });
+    } while(done++ < 3)
 }
 
 function startTimer(time) {

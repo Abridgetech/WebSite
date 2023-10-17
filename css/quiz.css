@@ -420,7 +420,7 @@ footer button.show{
         height: 60px !important;
     }
     .quiz_box{
-        height: 98vh;
+        height: 96vh;
     }
     .quiz_box header{
         position: fixed;
@@ -431,8 +431,8 @@ footer button.show{
        
     .quiz_box header .title{
         width: calc(100% - 145px);
-        font-size: calc(98vh/35);
-        line-height: calc(98vh / 35);
+        font-size: calc(96vh/35);
+        line-height: calc(96vh / 35);
     }
 
     .quiz_box header .timer {
@@ -443,7 +443,7 @@ footer button.show{
 
     section{
         overflow: scroll;
-        height: calc(98vh - 130px);
+        height: calc(96vh - 130px);
         margin-top: 70px;
     }
 
