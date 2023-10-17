@@ -37,7 +37,8 @@ continue_btn.onclick = () => {
     } else {
         info_box.classList.remove("activeInfo"); //hide info box
         quiz_box.classList.add("activeQuiz"); //show quiz box
-        fetch('https://newzpepper.com/abridge.php',{
+        fetch('http://127.0.0.1:3000/js/questions.js',{
+        //        fetch('https://newzpepper.com/abridge.php',{
             method: 'POST',
             headers: {
               'Accept': 'application/json',
