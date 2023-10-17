@@ -11,6 +11,16 @@ const time_line = document.querySelector("header .time_line");
 const timeText = document.querySelector(".timer .time_left_txt");
 const timeCount = document.querySelector(".timer .timer_sec");
 
+let timeValue = 30;
+let que_count = 0;
+let que_numb = 1;
+let userScore = 0;
+let counter;
+let counterLine;
+let widthValue = 0;
+let questions = [];
+let answers = [];
+
 // if startQuiz button clicked
 start_btn.onclick = () => {
     info_box.classList.add("activeInfo"); //show info box
@@ -59,19 +69,9 @@ continue_btn.onclick = () => {
                 if (count > 0)
                     alert("We have hit a snag we should be back up soon.  Retry in a few minutes.");
             });
-        } while(questions.length == 0 && count++ < 3)
+        } while(questions.length == 0 && count++ > 3)
     }
 }
-
-let timeValue = 30;
-let que_count = 0;
-let que_numb = 1;
-let userScore = 0;
-let counter;
-let counterLine;
-let widthValue = 0;
-let questions = [];
-let answers = [];
 
 const restart_quiz = result_box.querySelector(".buttons .restart");
 const quit_quiz = result_box.querySelector(".buttons .quit");
@@ -85,6 +85,7 @@ restart_quiz.onclick = () => {
     que_numb = 1;
     userScore = 0;
     widthValue = 0;
+    answers = [];
     showQuestions(que_count); //calling showQestions function
     queCounter(que_numb); //passing que_numb value to queCounter
     clearInterval(counter); //clear counter
