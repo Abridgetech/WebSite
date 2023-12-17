@@ -19,14 +19,13 @@ html {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
                 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
-
-.start_btn
- {
-    left: 30%;
+.start_btn {
+    width: 100%;
+    text-align: center;
+    background: none;
 }
-.start_btn~.start_btn {
-    left: 70%;
+.start_btn a {
+    margin: 15px;
 }
 .info_box.activeInfo,
 .quiz_box.activeQuiz,
@@ -410,9 +409,6 @@ footer button.show{
         width: 96%;
         margin: 0;
     }    
-    .start_btn {
-        width: 34%
-    }
     footer {
         padding: 0 5px;;
     }
