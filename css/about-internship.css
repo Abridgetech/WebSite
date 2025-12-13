@@ -1065,4 +1065,280 @@ animation: sparkleAnim 1.6s linear forwards; */
   padding: 6px 10px !important;
 }
 
+/* ===============================
+   THANK YOU – BIG & COLORFUL
+================================ */
+
+.thankyou-wrapper {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Main card */
+.thankyou-box {
+  padding: 90px 80px;
+  border-radius: 36px;
+  text-align: center;
+  max-width: 760px;
+  width: 92%;
+
+  background: linear-gradient(
+    135deg,
+    #fff7cc,
+    #ffe58f,
+    #ffd24d
+  );
+
+  box-shadow:
+    0 25px 60px rgba(0,0,0,0.2);
+}
+
+/* Heading */
+.thankyou-box h2 {
+  font-size: 64px;
+  font-weight: 900;
+  margin-bottom: 24px;
+
+  background: linear-gradient(
+    90deg,
+    #ff6a00,
+    #ffcc00,
+    #ff6a00
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Text */
+.thankyou-box p {
+  font-size: 24px;
+  line-height: 1.7;
+  color: #3b2a00;
+  font-weight: 500;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .thankyou-box {
+    padding: 60px 30px;
+  }
+
+  .thankyou-box h2 {
+    font-size: 42px;
+  }
+
+  .thankyou-box p {
+    font-size: 18px;
+  }
+}
+/* ======================================
+   GLOWING THANK YOU MESSAGE
+====================================== */
+
+.thankyou-wrapper {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card with glowing border */
+.thankyou-glow-card {
+  position: relative;
+  padding: 90px 80px;
+  max-width: 760px;
+  width: 92%;
+  border-radius: 36px;
+  background: #ffffff;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  z-index: 1;
+}
+
+/* Animated glowing border */
+.thankyou-glow-card::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 40px;
+  background: linear-gradient(
+    120deg,
+    #ff0080,
+    #ffd700,
+    #00f0ff,
+    #ff0080
+  );
+  background-size: 300% 300%;
+  animation: glowBorder 6s linear infinite;
+  z-index: -2;
+}
+
+/* Inner white layer (keeps text readable) */
+.thankyou-glow-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 36px;
+  background: #ffffff;
+  z-index: -1;
+}
+
+/* Gradient title text */
+.thankyou-title {
+  font-size: 64px;
+  font-weight: 900;
+  margin-bottom: 24px;
+  background: linear-gradient(
+    90deg,
+    #ff7a00,
+    #ffcc00,
+    #ff7a00
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Main message */
+.thankyou-text {
+  font-size: 24px;
+  line-height: 1.7;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Border animation */
+@keyframes glowBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .thankyou-glow-card {
+    padding: 60px 30px;
+  }
+
+  .thankyou-title {
+    font-size: 42px;
+  }
+
+  .thankyou-text {
+    font-size: 18px;
+  }
+}
+/* ======================================
+   THANK YOU — GLOW BORDER ONLY
+   (INNER COLOR UNCHANGED)
+====================================== */
+
+.thankyou-wrapper {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Your existing card stays SAME */
+.thankyou-card {
+  position: relative;
+  padding: 90px 80px;
+  max-width: 760px;
+  width: 92%;
+  border-radius: 36px;
+  text-align: center;
+
+  /* ❗ IMPORTANT: DO NOT TOUCH BACKGROUND */
+  /* background stays exactly as before */
+
+  z-index: 1;
+}
+
+/* OUTER glowing border only */
+.thankyou-card::before {
+  content: "";
+  position: absolute;
+  inset: -4px; /* border thickness */
+  border-radius: 40px;
+
+  background: linear-gradient(
+    120deg,
+    #ff0080,
+    #ffd700,
+    #00f0ff,
+    #ff0080
+  );
+  background-size: 300% 300%;
+  animation: thankGlow 6s linear infinite;
+
+  z-index: -1;
+  filter: blur(6px);
+}
+
+/* Beautiful gradient heading */
+.thankyou-title {
+  font-size: 64px;
+  font-weight: 900;
+  margin-bottom: 24px;
+
+  background: linear-gradient(
+    90deg,
+    #ff7a00,
+    #ffcc00,
+    #ff7a00
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Text stays clean */
+.thankyou-text {
+  font-size: 24px;
+  line-height: 1.7;
+  color: inherit; /* keep original color */
+  font-weight: 500;
+}
+
+/* Glow animation */
+@keyframes thankGlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Mobile fix */
+@media (max-width: 768px) {
+  .thankyou-card {
+    padding: 60px 30px;
+  }
+
+  .thankyou-title {
+    font-size: 42px;
+  }
+
+  .thankyou-text {
+    font-size: 18px;
+  }
+}
+/* ======================================
+   SAME PREMIUM FONT FOR GREETING BLOCK
+====================================== */
+
+.thankyou-card {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Heading */
+.thankyou-title {
+  font-weight: 700;
+  letter-spacing: 0.6px;
+}
+
+/* Text */
+.thankyou-text {
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
 
