@@ -70,6 +70,8 @@
                     <div style="display: inline-block;">at a time...</div>
                 </h3>
                 <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
+                <a class="btn btn-primary btn-xl" style="margin-left: 10px;" href="about-internship.html">Register</a>
+
             </div>
         </header>
         <!-- About-->
@@ -447,6 +449,22 @@
                     </div>
                 </div>
             </div>
+            <script>
+document.querySelector('.masthead').addEventListener('mousemove', function(e) {
+    let spark = document.createElement('span');
+    spark.className = 'spark';
+    let x = e.clientX;
+    let y = e.clientY;
+    spark.style.left = x + 'px';
+    spark.style.top = y + 'px';
+
+    this.appendChild(spark);
+
+    setTimeout(() => {
+        spark.remove();
+    }, 800);
+});
+</script>
 
             <!-- jQuery Modal -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>

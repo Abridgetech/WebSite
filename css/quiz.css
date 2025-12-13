@@ -452,3 +452,14 @@ footer button.show{
         bottom: 0;
     }
 }
+/* Shake effect for incorrect option */
+.option_list .option.incorrect {
+    animation: shakeOption 0.25s ease-in-out;
+}
+
+@keyframes shakeOption {
+    25% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    75% { transform: translateX(-2px); }
+    100% { transform: translateX(0); }
+}

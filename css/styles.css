@@ -13180,3 +13180,66 @@ label.radio input:checked + span {
   outline: 0 !important;
   box-shadow: none !important;
 }
+/* Sparkle container */
+.sparkle-area {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 99;
+}
+
+/* Sparkle particles */
+.sparkle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(white, rgba(255,255,255,0));
+    border-radius: 50%;
+    opacity: 0;
+    animation: sparkleAnim 0.9s linear forwards;
+}
+
+@keyframes sparkleAnim {
+    0% {
+        opacity: 1;
+        transform: scale(0.2);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.6);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.1);
+    }
+}
+/* Spark effect on hover */
+.masthead {
+    position: relative;
+    overflow: hidden;
+}
+
+.spark {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 1);
+    animation: spark-animation 0.8s linear forwards;
+}
+
+@keyframes spark-animation {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-60px) scale(0);
+        opacity: 0;
+    }
+}
+width: 10px;
+height: 10px;
