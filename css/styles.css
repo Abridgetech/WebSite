@@ -13180,3 +13180,231 @@ label.radio input:checked + span {
   outline: 0 !important;
   box-shadow: none !important;
 }
+/* Internship Page Styles */
+.yellow-grad {
+    background: linear-gradient(90deg, #ecb807 0%, #f7d23f 100%);
+    color: #000;
+}
+.rounded-3 {
+    border-radius: 0.5rem !important;
+}
+.rounded-4 {
+    border-radius: 1rem !important;
+}
+.border-secondary-subtle {
+    border-color: #e9ecef !important;
+}
+.form-check-input:checked {
+    background-color: #ecb807;
+    border-color: #ecb807;
+}
+.focus-ring-yellow:focus {
+    box-shadow: 0 0 0 0.25rem rgba(236, 184, 7, 0.25);
+    border-color: #ecb807;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+.rounded-5 {
+  border-radius: 2rem !important; /* Larger radius for Thank You card */
+}
+
+/* Tooltip Styles */
+.validation-tooltip {
+    position: absolute;
+    bottom: -35px; /* Adjust as needed */
+    left: 10px;
+    background-color: #ecb807; /* Yellow site color */
+    color: #000;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.validation-tooltip::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 10px;
+    border-width: 0 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent #ecb807 transparent;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.text-yellow-300 {
+    color: #f7d23f !important;
+}
+
+.hover\:scale-105:hover {
+    transform: scale(1.05);
+}
+
+/* Program Overview Section */
+.feature-card {
+    background: linear-gradient(180deg, #fff9c4 0%, #ffe082 100%); /* Light yellow gradient */
+    border: none;
+    border-radius: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+.feature-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.feature-icon-wrapper img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.feature-list {
+    list-style: none;
+    padding-left: 0;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.feature-list li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.2rem;
+    color: #555;
+}
+
+.feature-list li::before {
+    content: "•";
+    color: #eca307; /* Branding yellow */
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+/* Testimonials Section */
+.testimonial-card {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Soft shadow */
+    padding: 2.5rem;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.02);
+    height: 100%;
+}
+
+.avatar-initials {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 30% 30%, #ffd54f, #f0a500); /* Yellow gradient orb */
+    color: #444;
+    font-size: 2rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 4px 8px rgba(236, 163, 7, 0.3);
+}
+
+/* Testimonials Carousel */
+.testimonial-slider-container {
+    overflow: hidden;
+    position: relative;
+    padding: 1rem 0;
+}
+
+.testimonial-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+}
+
+.testimonial-slide {
+    min-width: 100%; /* Mobile first: 1 card per slide */
+    box-sizing: border-box;
+    padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+    .testimonial-slide {
+        min-width: 33.333%; /* Desktop: 3 cards visible */
+    }
+}
+
+.testimonial-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 350px;
+}
+
+.testimonial-quote {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.testimonial-author {
+    text-align: right;
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Carousel Buttons */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 3rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.3s;
+}
+
+.slider-btn:hover {
+    color: #fff;
+}
+
+.slider-prev {
+    left: 0;
+}
+
+.slider-next {
+    right: 0;
+}
